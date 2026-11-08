@@ -30,35 +30,3 @@ jobs:
           name: Shichak-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           
-name: Build Shichak APK
-
-on:
-  workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/main.yml'
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Build APK
-        run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: Shichak-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
-          
